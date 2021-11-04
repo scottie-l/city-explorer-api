@@ -1,7 +1,6 @@
 import axios from "axios";
 import { response } from "express";
 
-
 export default class Weather extends Component {
 
     getWeather = async(city) => {
