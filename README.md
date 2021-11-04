@@ -14,7 +14,7 @@ Go to app.
 
 ## Architecture
 
-<img scr = "images/API request response cycle.PNG">
+<img scr = "images/API request response cycle.png">
 
 ## Change Log
 
@@ -32,6 +32,6 @@ Estimate of time needed to complete: 3 hours
 
 Start time: 5:30
 
-Finish time: _____
+Finish time: 4:30pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 12 hours
