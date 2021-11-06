@@ -26,7 +26,7 @@ Go to app.
 
 ### Time Estimates
 
-Name of feature: City-explorer API
+###### Name of feature: City-explorer API server
 
 Estimate of time needed to complete: 3 hours
 
@@ -35,3 +35,13 @@ Start time: 5:30
 Finish time: 4:30pm
 
 Actual time needed to complete: 12 hours
+
+###### Name of feature: Make functions modular as possible
+
+Estimate of time needed to complete: 1 hrs
+
+Start time: 4:15
+
+Finish time: 5:15
+
+Actual time needed to complete: 1 hrs
