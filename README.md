@@ -14,8 +14,6 @@ Go to app.
 
 ## Architecture
 
-<img scr = "images/API request response cycle.png">
-
 ## Change Log
 
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. example:

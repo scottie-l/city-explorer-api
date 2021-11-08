@@ -1,15 +1,26 @@
 'use strict';
 
-const axios = require('axios'); 
+const axios = require('axios');
+const cache = {}; 
 
 async function handleGetMovie(req, res) {
     try {
         const {city} = req.query;
+        if (cache[query] && (Date.now() - cache[query].timestamp) < 10000) {
+            console.log('cache was hit' + query);
+            res.status(200).send(cache[query]);
+            return; 
+        }
         const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&query=${city}&language=en-US&page=1&include_adult=true`;
-        const results = await axios.get(url);
-        const movieData = results.data.results.map(movies => new Movies(movies));
-        console.log(movieData);
-        res.status(200).send(movieData);
+        const results = await axios
+        .get(url)
+        .then(results => {
+            const movieData = results.data.results.map(movies => new Movies(movies));
+            cache[query] = movieData;
+            cache[query].timestamp = Date.now();
+            console.log('cache was missed' + cache[query].timestamp);
+            res.status(200).send(movieData);
+        })        
     } catch (event) {
         res.status(500).send('Server Error 500')
     }

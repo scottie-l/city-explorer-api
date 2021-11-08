@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const { default: axios } = require('axios');
 const { query } = require('express');
-const handleGetWeatherList = require('./weather.js'); // add when modularize to bring in app
+const handleGetWeatherList = require('./weather.js');
 const handleGetMovie = require('./movie.js');
 const app = express();
 app.use(cors());
