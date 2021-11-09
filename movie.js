@@ -4,15 +4,16 @@ const axios = require('axios');
 const cache = {}; 
 
 async function handleGetMovie(req, res) {
-    try {
-        const {city} = req.query;
-        if (cache[query] && (Date.now() - cache[query].timestamp) < 10000) {
-            console.log('cache was hit' + query);
-            res.status(200).send(cache[query]);
-            return; 
-        }
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&query=${city}&language=en-US&page=1&include_adult=true`;
-        const results = await axios
+    const {city} = req.query; //query city or query?
+    if (cache[query] && (Date.now() - cache[query].timestamp) < 10000) {
+        console.log('cache was hit' + query);
+        res.status(200).send(cache[query]);
+        return; 
+    }
+    
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&query=${city}&language=en-US&page=1&include_adult=false`;
+
+    const results = await axios
         .get(url)
         .then(results => {
             const movieData = results.data.results.map(movies => new Movies(movies));
@@ -21,9 +22,10 @@ async function handleGetMovie(req, res) {
             console.log('cache was missed' + cache[query].timestamp);
             res.status(200).send(movieData);
         })        
-    } catch (event) {
-        res.status(500).send('Server Error 500')
-    }
+        .catch(error => {
+            console.log('Error', error);
+            res.status(500).send('Server Error 500', error);
+    })
 }
   
 class Movies {
@@ -34,4 +36,4 @@ class Movies {
     }
 }
 
-module.exports = handleGetMovie; 
+module.exports = handleGetMovie;
